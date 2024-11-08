@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESTURE BASED PICK AND DROP BOT</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent the default form submission
+            // Here you could add validation logic if needed
+            // Redirect to the next page
+            window.location.href = "user.html"; // Change to your desired page
+        }
+    </script>
+</head>
+
+<body>
+    <div class="background">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required aria-label="Jaimis">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required aria-label="jaimis">
+                </div>
+                <button type="submit">Login</button>
+                <p>Don't have an account? <a href="welcome.html">Sign up here</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

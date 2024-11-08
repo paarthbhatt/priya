@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture-Based Pick and Drop System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="user.css">
+    <script>
+        // Placeholder for ultrasonic sensor data
+        let ultrasonicDistance = 100; // Placeholder value for ultrasonic sensor
+
+        // Function to simulate ultrasonic sensor data update
+        function updateUltrasonicData() {
+            ultrasonicDistance = Math.floor(Math.random() * 100) + 10; // Random distance between 10 and 100
+            document.getElementById("ultrasonic-data").innerText = ultrasonicDistance + " cm";
+        }
+
+        // Simulate periodic ultrasonic sensor data update every 3 seconds
+        setInterval(updateUltrasonicData, 3000);
+        
+        // Function to simulate the action buttons (PICK, DROP, etc.)
+        function handleAction(action) {
+            alert(action + " action triggered!");
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Gesture-Based Pick and Drop System</h1>
+            <p>Interact with the system using gestures and sensors!</p>
+        </header>
+
+        <main>
+            <div class="sensor-container">
+                <div class="sensor-box">
+                    <h2>Ultrasonic Sensor</h2>
+                    <div class="ultrasonic-data">
+                        <p><strong>Distance:</strong> <span id="ultrasonic-data">100 cm</span></p>
+                    </div>
+                </div>
+
+                <div class="sensor-box">
+                    <h2>Gyroscope Data</h2>
+                    <div class="gyro-data">
+                        <p><strong>Gyroscope readings (visualized below):</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" onclick="handleAction('PICK')">PICK</button>
+                <button class="action-btn" onclick="handleAction('DROP')">DROP</button>
+                <button class="action-btn" onclick="handleAction('FORWARD')">FORWARD</button>
+                <button class="action-btn" onclick="handleAction('BACKWARD')">BACKWARD</button>
+            </div>
+        </main>
+    </div>
+    <br>
+    <br>
+
+    <!-- Embedded ThingSpeak charts for visualizing sensor data -->
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2733506/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2733506/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2733506/charts/5?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2733506/charts/6?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2733506/charts/7?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+    
+    <footer>
+        <p>&copy; 2024 Gesture-Based Pick and Drop System. All rights reserved.</p>
+    </footer>
+    
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+header {
+    text-align: center;
+    padding: 30px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+/* Sensor Data Section */
+.sensor-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.sensor-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 48%;
+}
+
+.sensor-box h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.gyro-data, .ultrasonic-data {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.gyro-data span, .ultrasonic-data span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Action Buttons Section */
+.action-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.action-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #45a049;
+}
+
+.action-btn:active {
+    background-color: #388e3c;
+}
+
+/* Footer Section */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+}
