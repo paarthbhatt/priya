@@ -72,7 +72,7 @@ Swipe Left/Right: Move the arm horizontally.
 ---
 
 
-Customization
+## Customization
 
 Modify the gesture_control.py script to add or change gestures.
 
@@ -82,21 +82,21 @@ Edit the arduino_code.ino to control additional hardware components.
 
 ---
 
-Demo
+## Demo
 
 Add a video link or GIF showcasing the working system.
 
 
 ---
 
-License
+## License
 
 This project is licensed under the MIT License.
 
 
 ---
 
-Contact
+## Contact
 
 Author: [Your Name]
 Email: yourname@example.com
