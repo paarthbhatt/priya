@@ -1,47 +1,17 @@
 Gesture-Based Pick and Drop System
 
-This repository contains the code and resources for a Gesture-Based Pick and Drop System. The project leverages computer vision and hardware integration to enable users to interact with a robotic arm or similar mechanism using gestures, providing an intuitive and touch-free interface.
+This project allows users to control a robotic arm or pick-and-drop mechanism using hand gestures. Powered by computer vision and a microcontroller, this system simplifies interactions using a webcam to detect gestures and map them to actions.
 
 
 ---
 
 Features
 
-Gesture Recognition: Detect and classify gestures in real-time using a webcam or sensor.
+Real-time gesture recognition.
 
-Robotic Arm Control: Map gestures to specific pick-and-drop actions for a robotic mechanism.
+Control robotic hardware with simple hand movements.
 
-User-Friendly Interface: Visual feedback for the gestures recognized and actions performed.
-
-Customizable Gestures: Easily modify gestures and their corresponding actions.
-
-
-
----
-
-Technologies Used
-
-Hardware
-
-Robotic arm (or similar pick-and-drop mechanism).
-
-Webcam or gesture detection sensor (e.g., Leap Motion, Kinect).
-
-Microcontroller (e.g., Arduino, Raspberry Pi) for hardware control.
-
-
-Software
-
-Programming Language: Python.
-
-Libraries and Frameworks:
-
-OpenCV: For gesture recognition.
-
-Mediapipe: For advanced hand and gesture tracking.
-
-PySerial: For communication with the microcontroller.
-
+Configurable gestures and actions.
 
 
 
@@ -55,12 +25,20 @@ git clone https://github.com/username/gesture-pick-drop-system.git
 cd gesture-pick-drop-system
 
 
-2. Install dependencies:
+2. Install required Python libraries:
 
 pip install -r requirements.txt
 
 
-3. Connect the hardware components and ensure the microcontroller is properly set up.
+3. Flash the microcontroller with the hardware control script:
+
+For Arduino:
+
+Open the hardware/arduino_code.ino file in the Arduino IDE.
+
+Upload the code to your Arduino board.
+
+
 
 
 
@@ -69,36 +47,120 @@ pip install -r requirements.txt
 
 Usage
 
-1. Run the gesture recognition program:
+Step 1: Start the Gesture Recognition
+
+Run the Python script to detect gestures:
 
 python gesture_control.py
 
+Step 2: Calibrate Gestures
 
-2. Follow on-screen instructions to calibrate your gestures.
+Once the script starts, you’ll see instructions on the console:
+
+Place your hand in front of the camera.  
+Move your hand to the predefined positions.
+
+Step 3: Control the Robotic Arm
+
+Use the following gestures:
+
+Fist: Pick the object.
+
+Open Palm: Drop the object.
+
+Swipe Left/Right: Move the arm horizontally.
 
 
-3. Use predefined gestures to control the pick-and-drop mechanism.
 
+---
 
+Example Code
+
+Gesture Detection (gesture_control.py)
+
+import cv2
+import mediapipe as mp
+import serial
+
+# Initialize Mediapipe Hands
+mp_hands = mp.solutions.hands
+hands = mp_hands.Hands()
+mp_draw = mp.solutions.drawing_utils
+
+# Connect to the microcontroller
+arduino = serial.Serial('COM3', 9600)
+
+# Start webcam
+cap = cv2.VideoCapture(0)
+
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    # Convert frame to RGB
+    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    result = hands.process(rgb_frame)
+
+    # Detect hands
+    if result.multi_hand_landmarks:
+        for hand_landmarks in result.multi_hand_landmarks:
+            mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+
+            # Example: Detect fist gesture
+            if is_fist(hand_landmarks):
+                arduino.write(b'PICK\n')
+            elif is_open_palm(hand_landmarks):
+                arduino.write(b'DROP\n')
+
+    # Display the frame
+    cv2.imshow('Gesture Control', frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+
+Microcontroller Code (arduino_code.ino)
+
+#include <Servo.h>
+
+Servo servo;
+
+void setup() {
+  servo.attach(9);  // Attach servo to pin 9
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    String command = Serial.readStringUntil('\n');
+    if (command == "PICK") {
+      pickObject();
+    } else if (command == "DROP") {
+      dropObject();
+    }
+  }
+}
+
+void pickObject() {
+  servo.write(0);  // Move servo to pick position
+  delay(1000);
+}
+
+void dropObject() {
+  servo.write(90);  // Move servo to drop position
+  delay(1000);
+}
 
 
 ---
 
 Customization
 
-Add New Gestures
+Modify the gesture_control.py script to add or change gestures.
 
-1. Modify the gestures.json file to include new gestures and their corresponding actions.
-
-
-2. Update the code in gesture_control.py to handle new gestures.
-
-
-
-Adjust Robotic Arm Movements
-
-1. Edit the Arduino/Raspberry Pi script in the hardware/ directory to change movement logic.
-
+Edit the arduino_code.ino to control additional hardware components.
 
 
 
@@ -106,39 +168,24 @@ Adjust Robotic Arm Movements
 
 Demo
 
-Add demo videos, images, or GIFs showing the system in action.
-
-
----
-
-Contributions
-
-Contributions are welcome! Feel free to submit issues or pull requests for improvements, bug fixes, or new features.
+Add a video link or GIF showcasing the working system.
 
 
 ---
 
 License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-
----
-
-Acknowledgments
-
-Inspired by modern gesture recognition systems.
-
-Thanks to OpenCV and Mediapipe for their robust frameworks.
-
+This project is licensed under the MIT License.
 
 
 ---
 
 Contact
 
-For any questions or feedback, please reach out to:
-[Your Name]
+Author: [Your Name]
 Email: yourname@example.com
 GitHub: Your GitHub Profile
+
+
+---
 
