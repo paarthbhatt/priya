@@ -1,11 +1,11 @@
-** Gesture-Based Pick and Drop System **
+**Gesture-Based Pick and Drop System**
 
 This project allows users to control a robotic arm or pick-and-drop mechanism using hand gestures. Powered by computer vision and a microcontroller, this system simplifies interactions using a webcam to detect gestures and map them to actions.
 
 
 ---
 
-Features
+*Features*
 
 Real-time gesture recognition.
 
