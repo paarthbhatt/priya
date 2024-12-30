@@ -17,7 +17,7 @@ Configurable gestures and actions.
 
 ---
 
-Installation
+## Installation
 
 1. Clone the repository:
 
@@ -32,20 +32,17 @@ pip install -r requirements.txt
 
 3. Flash the microcontroller with the hardware control script:
 
-For Arduino:
+
+## For Arduino:
 
 Open the hardware/arduino_code.ino file in the Arduino IDE.
 
 Upload the code to your Arduino board.
 
 
-
-
-
-
 ---
 
-Usage
+## Usage
 
 Step 1: Start the Gesture Recognition
 
